@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bfmvc:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="bfmvc-0.0.1.war">
+      <element id="artifact" artifact-name="bfmvc:war exploded" />
+    </root>
+  </artifact>
+</component>
