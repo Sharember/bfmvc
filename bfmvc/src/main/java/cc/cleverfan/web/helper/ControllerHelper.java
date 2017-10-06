@@ -13,7 +13,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * @author chengfan
+ */
 public class ControllerHelper {
 
     //请求request与处理请求handler映射关系
@@ -25,6 +27,7 @@ public class ControllerHelper {
             initRequestMapp(controllerClasses);
         }
     }
+
 
     private static void initRequestMapp(ArrayList<Class<?>> controllerClasses) {
         for (Class<?> controllerClass : controllerClasses) {

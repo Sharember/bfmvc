@@ -1,5 +1,9 @@
 package cc.cleverfan.web;
 
+/**
+ * @author chengfan
+ * @date 2017-10-5 22:36:14
+ */
 public class Constant {
 
     public static final String APP_BASE_PACKAGE = "app.base_package";

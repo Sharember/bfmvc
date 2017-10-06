@@ -4,11 +4,13 @@ import cc.cleverfan.web.annotation.Controller;
 import cc.cleverfan.web.annotation.Service;
 import cc.cleverfan.web.utils.ClassUtil;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
  * 类操作
+ * @author chengfan
  */
 public class ClassHelper {
 
@@ -35,7 +37,9 @@ public class ClassHelper {
      * @return
      */
     public static ArrayList<Class<?>> getServiceClasses() {
-        return classes.stream().filter(c -> c.isAnnotationPresent(Service.class)).collect(Collectors.toCollection(ArrayList::new));
+        return classes.stream()
+                .filter(c -> c.isAnnotationPresent(Service.class))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -44,7 +48,9 @@ public class ClassHelper {
      * @return
      */
     public static ArrayList<Class<?>> getControllerClasses() {
-        return classes.stream().filter(c -> c.isAnnotationPresent(Controller.class)).collect(Collectors.toCollection(ArrayList::new));
+        return classes.stream()
+                .filter(c -> c.isAnnotationPresent(Controller.class))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -57,5 +63,27 @@ public class ClassHelper {
         bc.addAll(getServiceClasses());
         bc.addAll(getControllerClasses());
         return bc;
+    }
+
+    /**
+     * 获取父类或者接口的所有子类或者实现类
+     * @param superClass
+     * @return
+     */
+    public static ArrayList<Class<?>> getClassListBySuper(Class<?> superClass) {
+         return classes.stream()
+                .filter(cls -> superClass.isAssignableFrom(cls) && !superClass.equals(cls))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     * 获取有某一个注解的全部类
+     * @param annotationClass
+     * @return
+     */
+    public static ArrayList<Class<?>> getClassListByAnnotation(Class<? extends Annotation> annotationClass) {
+        return classes.stream()
+                .filter(cls -> cls.isAnnotationPresent(annotationClass))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
